@@ -36,7 +36,6 @@ jobs:
     - name: 下载源代码文件
       run: |
         sudo mkdir /temp
-        sudo wget -P /temp "$URL"
         echo https://sourceforge.net/projects/nippongsi/files/latest/download | xargs wget -P /temp
 
         
