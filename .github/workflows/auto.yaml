@@ -1,12 +1,21 @@
 name: 自动检测源代码更新并上传到阿里云
 
 on:
-  schedule:
-    - cron: "0 * * * *"
+   workflow_dispatch:
+    inputs:
+      ROM_URL:
+        description: 'test'
+        required: false
+        default: ''
+#  schedule:
+#    - cron: "0 * * * *"
 
 env:
   SOURCEFORGE_URL: "https://sourceforge.net/projects/your-project/files/latest/download"
-  ALIYUN_OSS_BUCKET: "my-oss-bucket"
+  ALIYUN_OSS_BUCKET: "nipponGSIs"
+  mima: ${{ secrets.mima }}
+  User: ${{ secrets.User }}
+  ALIBABA_CLOUD_ACCESS_KEY_SECRET: ${{ secrets.ALIBABA_CLOUD_ACCESS_KEY_SECRET }}
 
 jobs:
   download-and-upload:
@@ -19,8 +28,9 @@ jobs:
         sudo apt-get python3
         pip install aliyunpan
         aliyunpan-cli
-        ALIBABA_CLOUD_ACCESS_KEY_SECRET: ${{ secrets.ALIBABA_CLOUD_ACCESS_KEY_SECRET }}
         echo "refresh_token: '$ALIBABA_CLOUD_ACCESS_KEY_SECRET'"  >  ~/.config/aliyunpan.yaml
+        echo "username: '$User'"  >  ~/.config/aliyunpan.yaml
+        echo "password: '$mima'"  >>  ~/.config/aliyunpan.yaml
         
     - name: 下载源代码文件
       run: |
@@ -29,4 +39,4 @@ jobs:
         
     - name: 上传源代码文件到阿里云盘
       run: |
-        aliyunpan-cli upload $FILE_NAME oss://${{ env.ALIYUN_OSS_BUCKET }}/$FILE_NAME
+        aliyunpan-cli upload $FILE_NAME /nipponGSIs
