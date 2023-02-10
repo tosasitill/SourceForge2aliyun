@@ -1,0 +1,31 @@
+name: 自动检测源代码更新并上传到阿里云
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+
+env:
+  SOURCEFORGE_URL: "https://sourceforge.net/projects/your-project/files/latest/download"
+  ALIYUN_OSS_BUCKET: "my-oss-bucket"
+
+jobs:
+  download-and-upload:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 设置阿里云CLI
+      uses: actions/setup-aliyuncli@v1
+      with:
+        version: latest
+      env:
+        ALIBABA_CLOUD_ACCESS_KEY_ID: ${{ secrets.ALIBABA_CLOUD_ACCESS_KEY_ID }}
+        ALIBABA_CLOUD_ACCESS_KEY_SECRET: ${{ secrets.ALIBABA_CLOUD_ACCESS_KEY_SECRET }}
+        
+    - name: 下载源代码文件
+      run: |
+        FILE_NAME=$(wget -O - -q ${{ env.SOURCEFORGE_URL }} | awk -F '=' '{print $NF}')
+        wget ${{ env.SOURCEFORGE_URL }} -O $FILE_NAME
+        
+    - name: 上传源代码文件到阿里云盘
+      run: |
+        aliyun oss cp $FILE_NAME oss://${{ env.ALIYUN_OSS_BUCKET }}/$FILE_NAME
