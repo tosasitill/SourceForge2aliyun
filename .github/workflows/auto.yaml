@@ -16,6 +16,7 @@ env:
   User: ${{ secrets.USER }}
   token: ${{ secrets.TOKEN }}
   
+  
 
 jobs:
   download-and-upload:
@@ -30,12 +31,13 @@ jobs:
         echo "username: '$User'"  >  ~/.config/aliyunpan.yaml
         echo "password: '$mima'"  >>  ~/.config/aliyunpan.yaml
         echo "refresh_token: '$token'"  >  ~/.config/aliyunpan.yaml
+        URL=$(curl -Ls https://sourceforge.net/projects/nippongsi/files/latest/download)
         
         
     - name: 下载源代码文件
       run: |
         sudo mkdir /temp
-        sudo wget -P /temp $(curl -Ls https://sourceforge.net/projects/nippongsi/files/latest/download)
+        sudo wget -P /temp "$URL"
 
         
     - name: 上传源代码文件到阿里云盘
