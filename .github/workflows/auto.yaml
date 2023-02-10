@@ -27,9 +27,8 @@ jobs:
         
     - name: 下载源代码文件
       run: |
-        ./true.py
         sudo mkdir /temp
-        sudo wget -P /temp $download_url
+        sudo wget -P /temp $(curl -Ls $SOURCEFORGE_URL)
         
     - name: 上传源代码文件到阿里云盘
       run: |
