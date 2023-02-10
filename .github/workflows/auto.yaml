@@ -11,7 +11,7 @@ on:
 #    - cron: "0 * * * *"
 
 env:
-  SOURCEFORGE_URL: "https://sourceforge.net/projects/your-project/files/latest/download"
+  SOURCEFORGE_URL: "https://sourceforge.net/projects/nippongsi/files/latest/download"
   ALIYUN_OSS_BUCKET: "nipponGSIs"
   mima: ${{ secrets.MIMA }}
   User: ${{ secrets.USER }}
