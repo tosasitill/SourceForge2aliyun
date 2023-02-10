@@ -33,6 +33,7 @@ jobs:
         
     - name: 下载源代码文件
       run: |
+        sudo mkdir /temp
         wget ${{ env.SOURCEFORGE_URL }} -O /temp
         
     - name: 上传源代码文件到阿里云盘
