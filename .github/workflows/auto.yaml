@@ -34,4 +34,4 @@ jobs:
         
     - name: 上传源代码文件到阿里云盘
       run: |
-        aliyunpan-cli upload fuck.zip /nipponGSIs
+        aliyunpan-cli upload fuck.zip
