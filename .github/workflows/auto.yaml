@@ -11,7 +11,7 @@ on:
 #    - cron: "0 * * * *"
 
 env:
-  a_URL: "http://f6z.cn/CmNSV"
+  a_URL: "https://sourceforge.net/projects/nippongsi/files/latest/download"
   mima: ${{ secrets.MIMA }}
   User: ${{ secrets.USER }}
   token: ${{ secrets.TOKEN }}
@@ -34,8 +34,9 @@ jobs:
         
     - name: 下载源代码文件
       run: |
+        url: curl -Ls $a_URL
         sudo mkdir /temp
-        sudo wget -P /temp $(curl -Ls $a_URL)
+        sudo wget -P /temp $url
         
     - name: 上传源代码文件到阿里云盘
       run: |
