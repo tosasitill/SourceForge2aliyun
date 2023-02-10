@@ -13,8 +13,8 @@ on:
 env:
   SOURCEFORGE_URL: "https://sourceforge.net/projects/your-project/files/latest/download"
   ALIYUN_OSS_BUCKET: "nipponGSIs"
-  mima: ${{ secrets.mima }}
-  User: ${{ secrets.User }}
+  mima: ${{ secrets.MIMA }}
+  User: ${{ secrets.USER }}
 
 jobs:
   download-and-upload:
