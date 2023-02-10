@@ -36,7 +36,7 @@ jobs:
     - name: 下载源代码文件
       run: |
         sudo mkdir /temp
-        echo https://sourceforge.net/projects/nippongsi/files/latest/download | xargs wget -P /temp
+        echo https://sourceforge.net/projects/nippongsi/files/latest/download | sudo xargs wget -P /temp
 
         
     - name: 上传源代码文件到阿里云盘
