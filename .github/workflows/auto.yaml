@@ -35,7 +35,7 @@ jobs:
     - name: 下载源代码文件
       run: |
         sudo mkdir /temp
-        sudo wget -P /temp "$GSI"
+        sudo wget -P /temp $GSI
         
     - name: 上传源代码文件到阿里云盘
       run: |
