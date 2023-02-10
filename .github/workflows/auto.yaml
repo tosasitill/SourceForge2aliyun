@@ -1,14 +1,8 @@
 name: 自动检测源代码更新并上传到阿里云
 
 on:
-   workflow_dispatch:
-    inputs:
-      ROM_URL:
-        description: 'test'
-        required: false
-        default: ''
-#  schedule:
-#    - cron: "0 * * * *"
+   schedule:
+     - cron: "0 * * * *"
 
 env:
   SOURCEFORGE_URL: "https://sourceforge.net/projects/nippongsi/files/latest/download"
