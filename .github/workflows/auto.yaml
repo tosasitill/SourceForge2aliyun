@@ -1,8 +1,14 @@
 name: 自动检测源代码更新并上传到阿里云
 
 on:
-   schedule:
-     - cron: "0 * * * *"
+  workflow_dispatch:
+    inputs:
+      ROM_URL:
+        description: '直链'
+        required: true
+        default: 'https://mirrorbits.lineageos.org/full/tissot/20230110/lineage-19.1-20230110-nightly-tissot-signed.zip'
+#   schedule:
+#    - cron: "0 * * * *"
 
 env:
   SOURCEFORGE_URL: "https://sourceforge.net/projects/nippongsi/files/latest/download"
