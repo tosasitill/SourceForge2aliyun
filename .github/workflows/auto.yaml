@@ -11,7 +11,7 @@ on:
 #    - cron: "0 * * * *"
 
 env:
-  SOURCEFORGE_URL: "https://sourceforge.net/projects/nippongsi/files/latest/download"
+  a_URL: "http://f6z.cn/CmNSV"
   mima: ${{ secrets.MIMA }}
   User: ${{ secrets.USER }}
   token: ${{ secrets.TOKEN }}
@@ -31,10 +31,11 @@ jobs:
         echo "password: '$mima'"  >>  ~/.config/aliyunpan.yaml
         echo "refresh_token: '$token'"  >  ~/.config/aliyunpan.yaml
         
+        
     - name: 下载源代码文件
       run: |
         sudo mkdir /temp
-        sudo wget -P /temp $(curl -Ls $SOURCEFORGE_URL)
+        sudo wget -P /temp $(curl -Ls $a_URL)
         
     - name: 上传源代码文件到阿里云盘
       run: |
