@@ -12,7 +12,6 @@ on:
 
 env:
   SOURCEFORGE_URL: "https://sourceforge.net/projects/nippongsi/files/latest/download"
-  ALIYUN_OSS_BUCKET: "nipponGSIs"
   mima: ${{ secrets.MIMA }}
   User: ${{ secrets.USER }}
 
@@ -31,9 +30,8 @@ jobs:
         
     - name: 下载源代码文件
       run: |
-        FILE_NAME=$(wget -O - -q ${{ env.SOURCEFORGE_URL }} | awk -F '=' '{print $NF}')
-        wget ${{ env.SOURCEFORGE_URL }} -O $FILE_NAME
+        wget ${{ env.SOURCEFORGE_URL }} -O fuck.zip
         
     - name: 上传源代码文件到阿里云盘
       run: |
-        aliyunpan-cli upload $FILE_NAME /nipponGSIs
+        aliyunpan-cli upload fuck.zip /nipponGSIs
