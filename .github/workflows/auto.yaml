@@ -15,7 +15,6 @@ env:
   ALIYUN_OSS_BUCKET: "nipponGSIs"
   mima: ${{ secrets.mima }}
   User: ${{ secrets.User }}
-  ALIBABA_CLOUD_ACCESS_KEY_SECRET: ${{ secrets.ALIBABA_CLOUD_ACCESS_KEY_SECRET }}
 
 jobs:
   download-and-upload:
@@ -28,7 +27,6 @@ jobs:
         sudo apt-get python3
         pip install aliyunpan
         aliyunpan-cli
-        echo "refresh_token: '$ALIBABA_CLOUD_ACCESS_KEY_SECRET'"  >  ~/.config/aliyunpan.yaml
         echo "username: '$User'"  >  ~/.config/aliyunpan.yaml
         echo "password: '$mima'"  >>  ~/.config/aliyunpan.yaml
         
