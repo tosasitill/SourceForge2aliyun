@@ -3,15 +3,14 @@ name: 自动检测源代码更新并上传到阿里云
 on:
   workflow_dispatch:
     inputs:
-      ROM_URL:
-        description: '直链'
+       GSI:
+        description: 'SourceForge 直链'
         required: true
-        default: 'https://mirrorbits.lineageos.org/full/tissot/20230110/lineage-19.1-20230110-nightly-tissot-signed.zip'
+        default: ''
 #   schedule:
 #    - cron: "0 * * * *"
 
 env:
-  a_URL: "https://sourceforge.net/projects/nippongsi/files/latest/download"
   mima: ${{ secrets.MIMA }}
   User: ${{ secrets.USER }}
   token: ${{ secrets.TOKEN }}
@@ -36,7 +35,7 @@ jobs:
     - name: 下载源代码文件
       run: |
         sudo mkdir /temp
-        sudo curl -LJO https://sourceforge.net/projects/nippongsi/files/latest/download -o /temp
+        sudo wget -P /temp "$GSI"
         
     - name: 上传源代码文件到阿里云盘
       run: |
