@@ -33,9 +33,8 @@ jobs:
         
     - name: 下载源代码文件
       run: |
-        FILE_NAME=$(wget -O - -q ${{ env.SOURCEFORGE_URL }} | awk -F '=' '{print $NF}')
-        wget ${{ env.SOURCEFORGE_URL }} -O $FILE_NAME
+        wget ${{ env.SOURCEFORGE_URL }} -O /temp
         
     - name: 上传源代码文件到阿里云盘
       run: |
-        aliyunpan-cli upload $FILE_NAME /nipponGSIs
+        aliyunpan-cli upload /temp/* /nipponGSIs
