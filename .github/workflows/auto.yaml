@@ -23,7 +23,6 @@ jobs:
     steps:
     - name: 设置阿里云CLI
       run: |
-        sudo apt-get pip
         sudo apt-get python3
         pip install aliyunpan
         aliyunpan-cli
