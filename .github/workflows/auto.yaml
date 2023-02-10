@@ -14,12 +14,13 @@ jobs:
     
     steps:
     - name: 设置阿里云CLI
-      uses: actions/setup-aliyuncli@v1
-      with:
-        version: latest
-      env:
-        ALIBABA_CLOUD_ACCESS_KEY_ID: ${{ secrets.ALIBABA_CLOUD_ACCESS_KEY_ID }}
+      run: |
+        sudo apt-get pip
+        sudo apt-get python3
+        pip install aliyunpan
+        aliyunpan-cli
         ALIBABA_CLOUD_ACCESS_KEY_SECRET: ${{ secrets.ALIBABA_CLOUD_ACCESS_KEY_SECRET }}
+        echo "refresh_token: '$ALIBABA_CLOUD_ACCESS_KEY_SECRET'"  >  ~/.config/aliyunpan.yaml
         
     - name: 下载源代码文件
       run: |
@@ -28,4 +29,4 @@ jobs:
         
     - name: 上传源代码文件到阿里云盘
       run: |
-        aliyun oss cp $FILE_NAME oss://${{ env.ALIYUN_OSS_BUCKET }}/$FILE_NAME
+        aliyunpan-cli upload $FILE_NAME oss://${{ env.ALIYUN_OSS_BUCKET }}/$FILE_NAME
