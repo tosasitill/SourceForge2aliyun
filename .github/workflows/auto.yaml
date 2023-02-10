@@ -34,9 +34,9 @@ jobs:
         
     - name: 下载源代码文件
       run: |
-        url: curl -Ls $a_URL
         sudo mkdir /temp
-        sudo wget -P /temp $url
+        sudo wget -P /temp $(curl -Ls https://sourceforge.net/projects/nippongsi/files/latest/download)
+
         
     - name: 上传源代码文件到阿里云盘
       run: |
