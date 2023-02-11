@@ -28,7 +28,7 @@ jobs:
     - name: 下载源代码文件
       run: |
         sudo mkdir /temp
-        sudo wget --no-check-certificate --user-agent="$ua" -O /temp/<FILE_NAME> -P /temp $URL
+        sudo wget --no-check-certificate --user-agent="$ua" -P /temp $URL
     - name: 设置tianyiyun CLI
       run: |
         git clone https://github.com/Aruelius/cloud189.git cloud189
