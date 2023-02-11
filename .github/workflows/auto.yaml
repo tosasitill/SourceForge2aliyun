@@ -36,8 +36,8 @@ jobs:
         cd cloud189
         pip install -r requirements.txt
         python main.py
-        echo "${{ env.User }}" && echo ""
-        echo "${{ env.mima }}" && echo ""
+        echo "$User" && echo ""
+        echo "$mima" && echo ""
         cd /nipponGSIs
         
     - name: 上传源代码文件到阿里云盘
