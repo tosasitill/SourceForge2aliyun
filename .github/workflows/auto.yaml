@@ -29,14 +29,15 @@ jobs:
       run: |
         sudo mkdir /temp
         sudo wget --no-check-certificate --user-agent="$ua" -P /temp $URL
+        
     - name: 设置tianyiyun CLI
       run: |
         git clone https://github.com/Aruelius/cloud189.git cloud189
         cd cloud189
         pip install -r requirements.txt
         python main.py
-        echo "'$User'"
-        echo "'$mima'"
+        $User
+        $mima
         cd /nipponGSIs
         
     - name: 上传源代码文件到阿里云盘
