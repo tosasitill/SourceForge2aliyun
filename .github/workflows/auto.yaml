@@ -23,21 +23,21 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: 设置阿里云CLI
-      run: |
-        pip install --upgrade simplejson
-        pip install aliyunpan
-        aliyunpan-cli
-        echo "username: '$User'"  >  ~/.config/aliyunpan.yaml
-        echo "password: '$mima'"  >>  ~/.config/aliyunpan.yaml
-        echo "refresh_token: '$token'"  >  ~/.config/aliyunpan.yaml
-        
-        
     - name: 下载源代码文件
       run: |
         sudo mkdir /temp
         sudo wget -P /temp $URL
         
+    - name: 设置tianyiyun CLI
+      run: |
+        git clone https://github.com/Aruelius/cloud189.git cloud189
+        cd cloud189
+        pip install -r requirements.txt
+        python main.py
+        echo "'$User'"
+        echo "'$mima'"
+        cd /nipponGSIs
+        
     - name: 上传源代码文件到阿里云盘
       run: |
-        aliyunpan-cli upload /temp/* /nipponGSIs
+        upload -f /temp/*
